@@ -12,7 +12,7 @@ A new user is created on each login, even if the user is using the same login in
 
 ### Installation
 
-Clone this repository to your `typoconf/ext` folder like that:
+Clone this repository to your `typo3conf/ext` folder like that:
 
     git clone https://github.com/visol/ext-newsletterregistration newsletterregistration
 
