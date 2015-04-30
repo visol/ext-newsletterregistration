@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-19T13:43:14Z" product-name="easyvote">
+		<header/>
+		<body>
+
+			<trans-unit id="pluginLabel">
+				<source>Newsletter Registration</source>
+				<target>Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="flexform.sheetTitle">
+				<source>Configuration</source>
+				<target>Konfiguration</target>
+			</trans-unit>
+			<trans-unit id="flexform.newsletterTitle">
+				<source>Title of newsletter</source>
+				<target>Titel des Newsletters</target>
+			</trans-unit>
+			<trans-unit id="flexform.fieldList">
+				<source>User fields to display after opt-in (optional)</source>
+				<target>Optionale Benutzer-Felder, die nach dem Opt-in angezeigt werden</target>
+			</trans-unit>
+			<trans-unit id="flexform.userFolder">
+				<source>User storage folder</source>
+				<target>Benutzerordner</target>
+			</trans-unit>
+			<trans-unit id="newFrontendUser.introduction">
+				<source>Please enter your e-mail address to subscribe to the newsletter "%s".</source>
+				<target>Bitte geben Sie Ihre E-Mail-Adresse ein, um sich für den Newsletter "%s" anzumelden.</target>
+			</trans-unit>
+			<trans-unit id="newFrontendUser.submit">
+				<source>Register</source>
+				<target>Anmelden</target>
+			</trans-unit>
+			<trans-unit id="newFrontendUser.errorMessage">
+				<source>Validation of form data failed. Please correct the marked fields and submit again.</source>
+				<target>Validierung der Formulardaten fehlgeschlagen. Bitte korrigieren Sie die markierten Felder und klicken Sie nochmals auf anmelden.</target>
+			</trans-unit>
+			<trans-unit id="validation.newFrontendUser.email">
+				<source>E-mail</source>
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.introduction">
+				<source>Thank you for registering. We have sent you a confirmation e-mail. Please click the link in this e-mail to complete the registration process.</source>
+				<target>Besten Dank für Ihre Anmeldung. Wir haben Ihnen eine Bestätigungs-E-Mail gesendet. Bitte klicken Sie auf den Link in dieser E-Mail, um die Anmeldung abzuschliessen.</target>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.optInEmail.activate">
+				<source><![CDATA[
+					<p>Thank you for registering for the newsletter "%1$s". To complete the registration process, please click the link below:</p>
+					<p>%2$s</p>
+					<p>If you didn't register for this newsletter, please ignore this e-mail.</p>
+				]]></source>
+				<target><![CDATA[
+					<p>Besten Dank für Ihre Anmeldung für den Newsletter "%1$s". Klicken Sie bitte auf den untenstehenden Link, um die Anmeldung abzuschliessen:</p>
+					<p>%2$s</p>
+					<p>Sollten Sie sich nicht für diesen Newsletter angemeldet haben, ignorieren Sie bitte diese E-Mail.</p>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.optInEmail.edit">
+				<source><![CDATA[
+					<p>You are already subscribed to the newsletter "%1$s". If you like to edit your user information or unsubscribe, please click the link below:</p>
+					<p>%2$s</p>
+				]]></source>
+				<target><![CDATA[
+					<p>Sie haben den Newsletter "%1$s" bereits abonniert. Klicken Sie bitte auf den untenstehenden Link, falls Sie Ihre Benutzerdaten bearbeiten oder sich abmelden möchten:</p>
+					<p>%2$s</p>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.optInEmail.edit.unsubscribeOnly">
+				<source><![CDATA[
+					<p>You are already subscribed to the newsletter "%1$s". If you like to unsubscribe, please click the link below:</p>
+					<p>%2$s</p>
+				]]></source>
+				<target><![CDATA[
+					<p>Sie haben den Newsletter "%1$s" bereits abonniert. Klicken Sie bitte auf den untenstehenden Link, falls Sie sich abmelden möchten:</p>
+					<p>%2$s</p>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="activateFrontendUser.invalidLink">
+				<source>The confirmation link provided is invalid. If you copied the link from your e-mail client, please make sure that you selected the whole link.</source>
+				<target>Der Bestätigungs-Link ist ungültig. Falls Sie ihn aus Ihrem E-Mail-Programm kopiert haben, stellen Sie bitte sicher, dass Sie den kompletten Link markiert haben.</target>
+			</trans-unit>
+			<trans-unit id="activateFrontendUser.success">
+				<source>Your subscription was successfully confirmed. You will receive further issues of the newsletter "%s".</source>
+				<target>Ihre Anmeldung wurde erfolgreich bestätigt. Sie werden nun die Ausgaben des Newsletters "%s" erhalten.</target>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.editTitle">
+				<source>Personal data</source>
+				<target>Persönliche Angaben</target>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.editIntroduction">
+				<source>If you wish to receive a personalized newsletter, please update your personal data.</source>
+				<target>Um einen personalisierten Newsletter zu empfangen, können Sie Ihre persönlichen Daten eintragen.</target>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.submit">
+				<source>Save</source>
+				<target>Speichern</target>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.unsubscribeTitle">
+				<source>Cancel subscription</source>
+				<target>Abonnement beenden</target>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.unsubscribeButton">
+				<source>Cancel my subscription</source>
+				<target>Newsletter abbestellen</target>
+			</trans-unit>
+			<trans-unit id="updateFrontendUser.success">
+				<source>Your personal data was updated successfully.</source>
+				<target>Ihre persönlichen Angaben wurden erfolgreich aktualisiert.</target>
+			</trans-unit>
+			<trans-unit id="updateFrontendUser.error">
+				<source>Your personal data was could not be updated. Please try again.</source>
+				<target>Ihre persönlichen Angaben konnten nicht aktualisiert werden. Bitte versuchen Sie es nochmals.</target>
+			</trans-unit>
+			<trans-unit id="deleteFrontendUser.success">
+				<source>Your subscription was cancelled successfully and your personal data was removed from our system.</source>
+				<target>Ihr Abonnement wurde erfolgreich beendet und Ihre persönlichen Daten wurden aus unserem System gelöscht.</target>
+			</trans-unit>
+			<trans-unit id="deleteFrontendUser.error">
+				<source>Your subscription could not be cancelled. Please make sure you used a valid unsubscribe link. If the problem persists, please contact us for further assistance.</source>
+				<target>Ihr Abonnement konnte nicht beendet werden. Bitte stellen Sie sicher, dass Sie einen gültigen Abmelde-Link benutzen. Bitte kontaktieren Sie uns, falls das Problem weiterhin besteht.</target>
+			</trans-unit>
+
+
+			<trans-unit id="labels.gender">
+				<source>Salutation</source>
+				<target>Anrede</target>
+			</trans-unit>
+			<trans-unit id="labels.gender.m">
+				<source>Mr.</source>
+				<target>Herr</target>
+			</trans-unit>
+			<trans-unit id="labels.gender.f">
+				<source>Ms.</source>
+				<target>Frau</target>
+			</trans-unit>
+			<trans-unit id="labels.firstName">
+				<source>First name</source>
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="labels.lastName">
+				<source>Last name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="labels.email">
+				<source>E-mail</source>
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="labels.company">
+				<source>Organisation</source>
+				<target>Organisation</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

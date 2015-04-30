@@ -1,0 +1,60 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+	<f:form noCacheHash="true" action="update" name="frontendUser" object="{frontendUser}" class="form__newsletterregistration">
+		<f:flashMessages renderMode="div" />
+
+		<f:if condition="{fieldsToRender}">
+			<h3><f:translate key="editFrontendUser.editTitle" /></h3>
+			<p><f:translate key="editFrontendUser.editIntroduction" /></p>
+			<f:render partial="FormErrors" arguments="{object:Panel}" />
+			<f:for each="{fieldsToRender}" as="field">
+				<f:if condition="{field} == 'gender'">
+					<f:then>
+						<div class="form-group">
+							<label><f:translate key="labels.gender" /></label>
+							<label class="radio-inline">
+								<f:form.radio property="gender" value="f" checked="{frontendUser.gender} == 'f'" /> <f:translate key="labels.gender.f" />
+							</label>
+							<label class="radio-inline">
+								<f:form.radio property="gender" value="m" checked="{frontendUser.gender} == 'm'" /> <f:translate key="labels.gender.m" />
+							</label>
+						</div>
+					</f:then>
+					<f:else>
+						<div class="form-group">
+							<label for="{field}">
+								<f:translate key="labels.{field}" />
+							</label>
+							<f:form.textfield id="{field}" class="form-control" property="{field}" />
+						</div>
+					</f:else>
+				</f:if>
+			</f:for>
+			<div class="form-group">
+				<label for="email-readonly">
+					<f:translate key="labels.email" />
+				</label>
+				<input type="text" class="form-control" id="email-readonly" name="email-readonly" readonly="readonly" value="{frontendUser.email}" />
+			</div>
+			<f:form.hidden name="verify" value="{verify}" />
+			<div class="form-group">
+				<f:form.submit value="{f:translate(key:'editFrontendUser.submit')}" />
+			</div>
+		</f:if>
+
+		<h3><f:translate key="editFrontendUser.unsubscribeTitle" /></h3>
+		<f:if condition="{fieldsToRender}">
+			<f:else>
+				<div class="form-group">
+					<input type="text" class="form-control" name="email-readonly" readonly="readonly" value="{frontendUser.email}" />
+				</div>
+			</f:else>
+		</f:if>
+		<a class="button__link" href="{unsubscribeUri}"><f:translate key="editFrontendUser.unsubscribeButton" /></a>
+
+	</f:form>
+
+
+</f:section>

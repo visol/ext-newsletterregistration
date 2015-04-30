@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-19T13:43:14Z" product-name="easyvote">
+		<header/>
+		<body>
+			<trans-unit id="pluginLabel">
+				<source>Newsletter Registration</source>
+			</trans-unit>
+			<trans-unit id="flexform.sheetTitle">
+				<source>Configuration</source>
+			</trans-unit>
+			<trans-unit id="flexform.newsletterTitle">
+				<source>Title of newsletter</source>
+			</trans-unit>
+			<trans-unit id="flexform.fieldList">
+				<source>User fields to display after opt-in (optional)</source>
+			</trans-unit>
+			<trans-unit id="flexform.userFolder">
+				<source>User storage folder</source>
+				<target>Benutzerordner</target>
+			</trans-unit>
+			<trans-unit id="newFrontendUser.introduction">
+				<source>Please enter your e-mail address to subscribe to the newsletter "%s".</source>
+			</trans-unit>
+			<trans-unit id="newFrontendUser.submit">
+				<source>Register</source>
+			</trans-unit>
+			<trans-unit id="newFrontendUser.errorMessage">
+				<source>Validation of form data failed. Please correct the marked fields and submit again.</source>
+			</trans-unit>
+			<trans-unit id="validation.newFrontendUser.email">
+				<source>E-mail</source>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.introduction">
+				<source>Thank you for registering. We have sent you a confirmation e-mail. Please click the link in this e-mail to complete the registration process.</source>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.optInEmail.activate">
+				<source><![CDATA[
+					<p>Thank you for registering for the newsletter "%1$s". To complete the registration process, please click the link below:</p>
+					<p>%2$s</p>
+					<p>If you didn't register for this newsletter, please ignore this e-mail.</p>
+				]]></source>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.optInEmail.edit">
+				<source><![CDATA[
+					<p>You are already subscribed to the newsletter "%1$s". If you like to edit your user information or unsubscribe, please click the link below:</p>
+					<p>%2$s</p>
+				]]></source>
+			</trans-unit>
+			<trans-unit id="createFrontendUser.optInEmail.edit.unsubscribeOnly">
+				<source><![CDATA[
+					<p>You are already subscribed to the newsletter "%1$s". If you like to unsubscribe, please click the link below:</p>
+					<p>%2$s</p>
+				]]></source>
+			</trans-unit>
+			<trans-unit id="activateFrontendUser.invalidLink">
+				<source>The confirmation link provided is invalid. If you copied the link from your e-mail client, please make sure that you selected the whole link.</source>
+			</trans-unit>
+			<trans-unit id="activateFrontendUser.success">
+				<source>Your subscription was successfully confirmed. You will receive further issues of the newsletter "%s".</source>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.editTitle">
+				<source>Personal data</source>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.editIntroduction">
+				<source>If you wish to receive a personalized newsletter, please update your personal data.</source>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.submit">
+				<source>Save</source>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.unsubscribeTitle">
+				<source>Cancel subscription</source>
+			</trans-unit>
+			<trans-unit id="editFrontendUser.unsubscribeButton">
+				<source>Cancel my subscription</source>
+			</trans-unit>
+			<trans-unit id="updateFrontendUser.success">
+				<source>Your personal data was updated successfully.</source>
+			</trans-unit>
+			<trans-unit id="updateFrontendUser.error">
+				<source>Your personal data was could not be updated. Please try again.</source>
+			</trans-unit>
+			<trans-unit id="deleteFrontendUser.success">
+				<source>Your subscription was cancelled successfully and your personal data was removed from our system.</source>
+			</trans-unit>
+			<trans-unit id="deleteFrontendUser.error">
+				<source>Your subscription could not be cancelled. Please make sure you used a valid unsubscribe link. If the problem persists, please contact us for further assistance.</source>
+			</trans-unit>
+
+
+			<trans-unit id="labels.gender">
+				<source>Salutation</source>
+			</trans-unit>
+			<trans-unit id="labels.gender.m">
+				<source>Mr.</source>
+			</trans-unit>
+			<trans-unit id="labels.gender.f">
+				<source>Ms.</source>
+			</trans-unit>
+			<trans-unit id="labels.firstName">
+				<source>First name</source>
+			</trans-unit>
+			<trans-unit id="labels.lastName">
+				<source>Last name</source>
+			</trans-unit>
+			<trans-unit id="labels.email">
+				<source>E-mail</source>
+			</trans-unit>
+			<trans-unit id="labels.company">
+				<source>Organisation</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

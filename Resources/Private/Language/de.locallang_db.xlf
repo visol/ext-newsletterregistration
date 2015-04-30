@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-05-19T14:51:03Z" product-name="newsletterregistration">
+		<header/>
+		<body>
+			<trans-unit id="fe_users.import_uid">
+				<source>Import UID:</source>
+				<target>Import UID:</target>
+			</trans-unit>
+			<trans-unit id="fe_users.gender">
+				<source>Gender:</source>
+				<target>Geschlecht:</target>
+			</trans-unit>
+			<trans-unit id="fe_users.gender.m">
+				<source>Male</source>
+				<target>Mann</target>
+			</trans-unit>
+			<trans-unit id="fe_users.gender.f">
+				<source>Female</source>
+				<target>Frau</target>
+			</trans-unit>
+			<trans-unit id="fe_users.user_language">
+				<source>User language:</source>
+				<target>Korrespondenzsprache:</target>
+			</trans-unit>
+			<trans-unit id="fe_users.user_language.0">
+				<source>German</source>
+				<target>Deutsch</target>
+			</trans-unit>
+			<trans-unit id="fe_users.user_language.1">
+				<source>English</source>
+				<target>Englisch</target>
+			</trans-unit>
+			<trans-unit id="fe_users.helper">
+				<source>Functions:</source>
+				<target>Funktionen:</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
