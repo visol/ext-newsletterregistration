@@ -1,0 +1,7 @@
+{
+	"name": "visol/newsletterregistration",
+	"type": "typo3-cms-extension",
+	"description": "Newsletter Registration",
+	"homepage": "https://github.com/visol/ext-newsletterregistration",
+	"license": ["GPL-2.0+"]
+}
