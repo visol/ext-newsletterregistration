@@ -1,7 +1,7 @@
 TYPO3 CMS Extension "newsletterregistration"
 ============================================
 
-Requires TYPO3 6.2+
+Requires TYPO3 8.7 LTS
 
 ### Overview
 
