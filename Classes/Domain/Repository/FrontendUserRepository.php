@@ -1,4 +1,5 @@
 <?php
+
 namespace Visol\Newsletterregistration\Domain\Repository;
 
 /**
@@ -18,36 +19,35 @@ namespace Visol\Newsletterregistration\Domain\Repository;
  *
  * @api
  */
-class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository {
+class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+{
 
-	/**
-	 * @param string $email
-	 * @param integer $targetFolder
-	 * @return \Visol\Newsletterregistration\Domain\Model\FrontendUser|NULL
-	 */
-	public function findOneByEmailAndStoragePageId($email, $targetFolder) {
-		$query = $this->createQuery();
-		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
-		$query->getQuerySettings()->setStoragePageIds(array($targetFolder));
-		$query->matching(
-			$query->equals('email', $email)
-		);
-		return $query->execute()->getFirst();
-	}
+    /**
+     * @param string $email
+     * @param integer $targetFolder
+     * @return \Visol\Newsletterregistration\Domain\Model\FrontendUser|NULL
+     */
+    public function findOneByEmailAndStoragePageId($email, $targetFolder)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->getQuerySettings()->setStoragePageIds([$targetFolder]);
+        $query->matching($query->equals('email', $email));
+        return $query->execute()->getFirst();
+    }
 
-	/**
-	 * @param string $uid
-	 * @param integer $targetFolder
-	 * @return \Visol\Newsletterregistration\Domain\Model\FrontendUser|NULL
-	 */
-	public function findOneByUidAndStoragePageId($uid, $targetFolder) {
-		$query = $this->createQuery();
-		$query->getQuerySettings()->setIgnoreEnableFields(TRUE);
-		$query->getQuerySettings()->setStoragePageIds(array($targetFolder));
-		$query->matching(
-			$query->equals('uid', $uid)
-		);
-		return $query->execute()->getFirst();
-	}
+    /**
+     * @param string $uid
+     * @param integer $targetFolder
+     * @return \Visol\Newsletterregistration\Domain\Model\FrontendUser|NULL
+     */
+    public function findOneByUidAndStoragePageId($uid, $targetFolder)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->getQuerySettings()->setStoragePageIds([$targetFolder]);
+        $query->matching($query->equals('uid', $uid));
+        return $query->execute()->getFirst();
+    }
 
 }
