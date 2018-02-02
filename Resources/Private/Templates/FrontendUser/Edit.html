@@ -3,8 +3,15 @@
 <f:section name="main">
 
 	<f:form noCacheHash="true" action="update" name="frontendUser" object="{frontendUser}" class="form__newsletterregistration">
-		<f:flashMessages renderMode="div" />
-
+		<f:flashMessages as="flashMessages">
+			<div class="typo3-messages">
+				<f:for each="{flashMessages}" as="flashMessage">
+					<div class="typo3-message {flashMessage.class}">
+						{flashMessage.message}
+					</div>
+				</f:for>
+			</div>
+		</f:flashMessages>
 		<f:if condition="{fieldsToRender}">
 			<h3><f:translate key="editFrontendUser.editTitle" /></h3>
 			<p><f:translate key="editFrontendUser.editIntroduction" /></p>
