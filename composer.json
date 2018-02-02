@@ -4,7 +4,7 @@
 	"description": "Newsletter Registration",
 	"homepage": "https://github.com/visol/ext-newsletterregistration",
 	"license": [
-		"GPL-2.0+"
+		"GPL-2.0-or-later"
 	],
 	"require": {
 		"typo3/cms-core": "~8.7.0"
