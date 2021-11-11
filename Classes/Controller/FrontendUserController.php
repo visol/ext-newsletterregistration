@@ -54,7 +54,8 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         if ($existingFrontendUser instanceof FrontendUser) {
             if ($existingFrontendUser->isDisable() === true) {
                 // user is disabled, so maybe the opt-in failed - we send an opt-in-email again
-                $optInUri = $this->createOptInUri($existingFrontendUser->getUid());
+                $url = $this->createOptInUri($existingFrontendUser->getUid());
+                $optInUri = '<a href="' . $url .'">' . $url . '</a>';
                 $emailContent = LocalizationUtility::translate('createFrontendUser.optInEmail.activate',
                     $this->controllerContext->getRequest()->getControllerExtensionName(),
                     [1 => $this->settings['newsletterTitle'], 2 => $optInUri]);
