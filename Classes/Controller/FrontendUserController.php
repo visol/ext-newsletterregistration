@@ -2,6 +2,12 @@
 
 namespace Visol\Newsletterregistration\Controller;
 
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Visol\Newsletterregistration\Utility\Algorithms;
+use Visol\Newsletterregistration\Domain\Repository\FrontendUserRepository;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Visol\Newsletterregistration\Domain\Model\FrontendUser;
@@ -18,12 +24,11 @@ use Visol\Newsletterregistration\Domain\Model\FrontendUser;
  *
  * The TYPO3 project - inspiring people to share!
  */
-class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class FrontendUserController extends ActionController
 {
 
     /**
      * @var \Visol\Newsletterregistration\Domain\Repository\FrontendUserRepository
-     * @inject
      */
     protected $frontendUserRepository;
 
@@ -31,16 +36,16 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
      * persistenceManager
      *
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
-     * @inject
      */
     protected $persistenceManager;
 
     /**
      * @param \Visol\Newsletterregistration\Domain\Model\FrontendUser $newFrontendUser
      */
-    public function newAction(FrontendUser $newFrontendUser = null)
+    public function newAction(FrontendUser $newFrontendUser = null): ResponseInterface
     {
         $this->view->assign('newFrontendUser', $newFrontendUser);
+        return $this->htmlResponse();
     }
 
     /**
@@ -82,7 +87,7 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             }
         } else {
             $newFrontendUser->setUsername($newFrontendUser->getEmail());
-            $newFrontendUser->setPassword(\Visol\Newsletterregistration\Utility\Algorithms::generateRandomString(32));
+            $newFrontendUser->setPassword(Algorithms::generateRandomString(32));
             $newFrontendUser->setActivateNewsletter(true);
             $newFrontendUser->setReceiveHtmlMail(true);
             $newFrontendUser->setDisable(true);
@@ -102,8 +107,9 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     /**
      * Display information that account was created and opt-in e-mail was sent
      */
-    public function pendingOptInAction()
+    public function pendingOptInAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
@@ -114,8 +120,7 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     {
         $frontendUserUid = (int)base64_decode($ruid);
         if (!$frontendUserUid) {
-            // frontendUserUid could not be decoded
-            $this->forward('invalidLink');
+            return new ForwardResponse('invalidLink');
         } else {
             if ($verify === GeneralUtility::stdAuthCode($frontendUserUid)) {
                 $frontendUser = $this->frontendUserRepository->findOneByUidAndStoragePageId($frontendUserUid,
@@ -130,12 +135,10 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
                     $this->addFlashMessage($successMessage);
                     $this->redirect('edit', null, null, $this->request->getArguments());
                 } else {
-                    // no frontend user found
-                    $this->forward('invalidLink');
+                    return new ForwardResponse('invalidLink');
                 }
             } else {
-                // verification link was invalid
-                $this->forward('invalidLink');
+                return new ForwardResponse('invalidLink');
             }
         }
     }
@@ -143,20 +146,20 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
     /**
      * Display information that the opt-in link provided was invalid
      */
-    public function invalidLinkAction()
+    public function invalidLinkAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
      * @param string $ruid
      * @param string $verify
      */
-    public function editAction($ruid = '', $verify = '')
+    public function editAction($ruid = '', $verify = ''): ResponseInterface
     {
         $frontendUserUid = (int)base64_decode($ruid);
         if (!$frontendUserUid) {
-            // frontendUserUid could not be decoded
-            $this->forward('invalidLink');
+            return new ForwardResponse('invalidLink');
         } else {
             if ($verify === GeneralUtility::stdAuthCode($frontendUserUid)) {
                 $frontendUser = $this->frontendUserRepository->findOneByUidAndStoragePageId($frontendUserUid,
@@ -171,21 +174,20 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
                             GeneralUtility::trimExplode(',', $this->settings['fieldList']));
                     }
                 } else {
-                    // no frontend user found
-                    $this->forward('invalidLink');
+                    return new ForwardResponse('invalidLink');
                 }
             } else {
-                // verification link was invalid
-                $this->forward('invalidLink');
+                return new ForwardResponse('invalidLink');
             }
         }
+        return $this->htmlResponse();
     }
 
     /**
      * @param FrontendUser $frontendUser
      * @param string $verify
      */
-    public function updateAction(FrontendUser $frontendUser, $verify = '')
+    public function updateAction(FrontendUser $frontendUser, $verify = ''): ResponseInterface
     {
         if ($verify === GeneralUtility::stdAuthCode($frontendUser->getUid())) {
             $this->frontendUserRepository->update($frontendUser);
@@ -196,28 +198,27 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
             $this->redirect('edit', null, null,
                 ['verify' => $verify, 'ruid' => base64_encode($frontendUser->getUid())]);
         } else {
-            // verification code invalid
-            $this->forward('updateError');
+            return new ForwardResponse('updateError');
         }
     }
 
     /**
      * Display information that updating the user was denied
      */
-    public function updateErrorAction()
+    public function updateErrorAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
      * @param string $ruid
      * @param string $verify
      */
-    public function deleteAction($ruid = '', $verify = '')
+    public function deleteAction($ruid = '', $verify = ''): ResponseInterface
     {
         $frontendUserUid = (int)base64_decode($ruid);
         if (!$frontendUserUid) {
-            // frontendUserUid could not be decoded
-            $this->forward('deleteError');
+            return new ForwardResponse('deleteError');
         } else {
             if ($verify === GeneralUtility::stdAuthCode($frontendUserUid)) {
                 $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid);
@@ -225,21 +226,21 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
                     $this->frontendUserRepository->remove($frontendUser);
                     $this->persistenceManager->persistAll();
                 } else {
-                    // no frontend user found
-                    $this->forward('deleteError');
+                    return new ForwardResponse('deleteError');
                 }
             } else {
-                // verification link was invalid
-                $this->forward('deleteError');
+                return new ForwardResponse('deleteError');
             }
         }
+        return $this->htmlResponse();
     }
 
     /**
      * Display information that deleting the user was denied
      */
-    public function deleteErrorAction()
+    public function deleteErrorAction(): ResponseInterface
     {
+        return $this->htmlResponse();
     }
 
     /**
@@ -301,6 +302,16 @@ class FrontendUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
         $message->setBody($contentBeforeWrap . $content . $signature . $contentAfterWrap, 'text/html');
         $message->send();
         return $message->isSent();
+    }
+
+    public function injectFrontendUserRepository(FrontendUserRepository $frontendUserRepository): void
+    {
+        $this->frontendUserRepository = $frontendUserRepository;
+    }
+
+    public function injectPersistenceManager(PersistenceManager $persistenceManager): void
+    {
+        $this->persistenceManager = $persistenceManager;
     }
 
 }

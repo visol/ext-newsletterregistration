@@ -1,5 +1,6 @@
 <?php
-defined('TYPO3_MODE') or die();
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+defined('TYPO3') or die();
 
 $temporaryColumns = [
     'gender' => [
@@ -15,11 +16,11 @@ $temporaryColumns = [
     ],
 ];
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns('fe_users', $temporaryColumns, true);
+ExtensionManagementUtility::addTCAcolumns('fe_users', $temporaryColumns, true);
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_users', 'gender', '', 'after:company');
+ExtensionManagementUtility::addToAllTCAtypes('fe_users', 'gender', '', 'after:company');
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_users', 'title,first_name,last_name', '',
+ExtensionManagementUtility::addToAllTCAtypes('fe_users', 'title,first_name,last_name', '',
     'after:gender');
 
 $GLOBALS['TCA']['fe_users']['columns']['usergroup']['config']['minitems'] = 0;

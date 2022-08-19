@@ -2,6 +2,8 @@
 
 namespace Visol\Newsletterregistration\Utility;
 
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Core\SingletonInterface;
 /*                                                                        *
  * This script belongs to the TYPO3 Flow framework.                       *
  *                                                                        *
@@ -11,13 +13,13 @@ namespace Visol\Newsletterregistration\Utility;
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
  *                                                                        */
-require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('newsletterregistration') . 'Resources/PHP/iSecurity/Security_Randomizer.php');
+require_once(ExtensionManagementUtility::extPath('newsletterregistration') . 'Resources/PHP/iSecurity/Security_Randomizer.php');
 
 /**
  * A utility class for various algorithms.
  *
  */
-class Algorithms implements \TYPO3\CMS\Core\SingletonInterface
+class Algorithms implements SingletonInterface
 {
 
     /**

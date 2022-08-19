@@ -1,13 +1,16 @@
 <?php
-if (!defined('TYPO3_MODE')) {
+use Visol\Newsletterregistration\Controller\FrontendUserController;
+use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
+if (!defined('TYPO3')) {
     die('Access denied.');
 }
 
 /* Registration plugin */
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin('Visol.' . $_EXTKEY, 'Newsletterregistration', [
-        'FrontendUser' => 'new,create,edit,update,pendingOptIn,activate,invalidLink,updateError,delete',
-
+ExtensionUtility::configurePlugin('Newsletterregistration', 'Newsletterregistration',
+    [
+        FrontendUserController::class => 'new,create,edit,update,pendingOptIn,activate,invalidLink,updateError,delete',
     ], // non-cacheable actions
     [
-        'FrontendUser' => 'new,create,edit,update,activate,delete'
-    ]);
+        FrontendUserController::class => 'new,create,edit,update,activate,delete'
+    ]
+);
