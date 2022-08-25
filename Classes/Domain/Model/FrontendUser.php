@@ -2,6 +2,9 @@
 
 namespace Visol\Newsletterregistration\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -23,7 +26,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 {
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup>
+     * @var ObjectStorage<FrontendUserGroup>
      */
     protected $usergroup = null;
 
@@ -48,9 +51,9 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     protected $disable;
 
     /**
-     * @validate EmailAddress
-     * @validate NotEmpty
      * @var string
+     * @Extbase\Validate("EmailAddress")
+     * @Extbase\Validate("NotEmpty")
      */
     protected $email;
 

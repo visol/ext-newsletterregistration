@@ -27,6 +27,7 @@
 							<label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList</label>
 							<config>
 								<type>select</type>
+								<renderType>selectMultipleSideBySide</renderType>
 								<items type="array">
 									<numIndex index="0" type="array">
 										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender</numIndex>

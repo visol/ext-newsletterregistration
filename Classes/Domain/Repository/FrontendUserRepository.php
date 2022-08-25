@@ -2,6 +2,7 @@
 
 namespace Visol\Newsletterregistration\Domain\Repository;
 
+use Visol\Newsletterregistration\Domain\Model\FrontendUser;
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -25,7 +26,7 @@ class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\Fronte
     /**
      * @param string $email
      * @param integer $targetFolder
-     * @return \Visol\Newsletterregistration\Domain\Model\FrontendUser|NULL
+     * @return FrontendUser|NULL
      */
     public function findOneByEmailAndStoragePageId($email, $targetFolder)
     {
@@ -39,7 +40,7 @@ class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\Fronte
     /**
      * @param string $uid
      * @param integer $targetFolder
-     * @return \Visol\Newsletterregistration\Domain\Model\FrontendUser|NULL
+     * @return FrontendUser|NULL
      */
     public function findOneByUidAndStoragePageId($uid, $targetFolder)
     {

@@ -28,19 +28,19 @@ class FrontendUserController extends ActionController
 {
 
     /**
-     * @var \Visol\Newsletterregistration\Domain\Repository\FrontendUserRepository
+     * @var FrontendUserRepository
      */
     protected $frontendUserRepository;
 
     /**
      * persistenceManager
      *
-     * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @var PersistenceManager
      */
     protected $persistenceManager;
 
     /**
-     * @param \Visol\Newsletterregistration\Domain\Model\FrontendUser $newFrontendUser
+     * @param FrontendUser $newFrontendUser
      */
     public function newAction(FrontendUser $newFrontendUser = null): ResponseInterface
     {
@@ -49,11 +49,11 @@ class FrontendUserController extends ActionController
     }
 
     /**
-     * @param \Visol\Newsletterregistration\Domain\Model\FrontendUser $newFrontendUser
+     * @param FrontendUser $newFrontendUser
      */
     public function createAction(FrontendUser $newFrontendUser)
     {
-        /** @var \Visol\Newsletterregistration\Domain\Model\FrontendUser $existingFrontendUser */
+        /** @var FrontendUser $existingFrontendUser */
         $existingFrontendUser = $this->frontendUserRepository->findOneByEmailAndStoragePageId($newFrontendUser->getEmail(),
             (int)$this->settings['userFolder']);
         if ($existingFrontendUser instanceof FrontendUser) {
