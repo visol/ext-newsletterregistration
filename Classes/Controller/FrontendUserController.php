@@ -299,7 +299,8 @@ class FrontendUserController extends ActionController
 			<hr />
 			<p>' . $this->settings['sender']['name'] . ' | <a href="' . $this->settings['sender']['linkUrl'] . '" target="_blank">' . $this->settings['sender']['linkText'] . '</a></p>';
         $message->setSubject($subject);
-        $message->setBody($contentBeforeWrap . $content . $signature . $contentAfterWrap, 'text/html');
+        $message->html($contentBeforeWrap . $content . $signature . $contentAfterWrap);
+        $message->text($content);
         $message->send();
         return $message->isSent();
     }
