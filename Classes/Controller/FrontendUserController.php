@@ -260,7 +260,8 @@ class FrontendUserController extends ActionController
                 ]
             ]
         ];
-        return $this->uriBuilder->reset()->setUseCacheHash(false)->setCreateAbsoluteUri(true)->setArguments($arguments)->build();
+
+        return $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->setArguments($arguments)->build();
     }
 
     /**
