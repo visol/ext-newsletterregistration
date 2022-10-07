@@ -95,7 +95,8 @@ class FrontendUserController extends ActionController
             $newFrontendUser->setPid((int)$this->settings['userFolder']);
             $this->frontendUserRepository->add($newFrontendUser);
             $this->persistenceManager->persistAll();
-            $optInUri = $this->createOptInUri($newFrontendUser->getUid());
+            $url = $this->createOptInUri($newFrontendUser->getUid());
+            $optInUri = '<a href="' . $url .'">' . $url . '</a>';
             $emailContent = LocalizationUtility::translate('createFrontendUser.optInEmail.activate',
                 $this->request->getControllerExtensionName(),
                 [1 => $this->settings['newsletterTitle'], 2 => $optInUri]);
