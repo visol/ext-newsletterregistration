@@ -40,7 +40,8 @@ class FrontendUserController extends ActionController
     protected $persistenceManager;
 
     /**
-     * @param FrontendUser $newFrontendUser
+     * @param FrontendUser|null $newFrontendUser
+     * @return ResponseInterface
      */
     public function newAction(FrontendUser $newFrontendUser = null): ResponseInterface
     {
@@ -51,7 +52,7 @@ class FrontendUserController extends ActionController
     /**
      * @param FrontendUser $newFrontendUser
      */
-    public function createAction(FrontendUser $newFrontendUser)
+    public function createAction(FrontendUser $newFrontendUser): void
     {
         /** @var FrontendUser $existingFrontendUser */
         $existingFrontendUser = $this->frontendUserRepository->findOneByEmailAndStoragePageId($newFrontendUser->getEmail(),
@@ -62,7 +63,7 @@ class FrontendUserController extends ActionController
                 $url = $this->createOptInUri($existingFrontendUser->getUid());
                 $optInUri = '<a href="' . $url .'">' . $url . '</a>';
                 $emailContent = LocalizationUtility::translate('createFrontendUser.optInEmail.activate',
-                    $this->controllerContext->getRequest()->getControllerExtensionName(),
+                    $this->request->getControllerExtensionName(),
                     [1 => $this->settings['newsletterTitle'], 2 => $optInUri]);
                 $this->sendEmail($existingFrontendUser->getEmail(), $this->settings['newsletterTitle'], $emailContent);
             } else {
@@ -71,7 +72,7 @@ class FrontendUserController extends ActionController
                     // user is editable, we send an edit profile link
                     $optInUri = $this->createOptInUri($existingFrontendUser->getUid(), 'edit');
                     $emailContent = LocalizationUtility::translate('createFrontendUser.optInEmail.edit.unsubscribeOnly',
-                        $this->controllerContext->getRequest()->getControllerExtensionName(),
+                        $this->request->getControllerExtensionName(),
                         [1 => $this->settings['newsletterTitle'], 2 => $optInUri]);
                     $this->sendEmail($existingFrontendUser->getEmail(), $this->settings['newsletterTitle'],
                         $emailContent);
@@ -79,7 +80,7 @@ class FrontendUserController extends ActionController
                     // user is not editable, so we send an unsubscribe link
                     $optInUri = $this->createOptInUri($existingFrontendUser->getUid(), 'delete');
                     $emailContent = LocalizationUtility::translate('createFrontendUser.optInEmail.edit.unsubscribeOnly',
-                        $this->controllerContext->getRequest()->getControllerExtensionName(),
+                        $this->request->getControllerExtensionName(),
                         [1 => $this->settings['newsletterTitle'], 2 => $optInUri]);
                     $this->sendEmail($existingFrontendUser->getEmail(), $this->settings['newsletterTitle'],
                         $emailContent);
@@ -96,7 +97,7 @@ class FrontendUserController extends ActionController
             $this->persistenceManager->persistAll();
             $optInUri = $this->createOptInUri($newFrontendUser->getUid());
             $emailContent = LocalizationUtility::translate('createFrontendUser.optInEmail.activate',
-                $this->controllerContext->getRequest()->getControllerExtensionName(),
+                $this->request->getControllerExtensionName(),
                 [1 => $this->settings['newsletterTitle'], 2 => $optInUri]);
             $this->sendEmail($newFrontendUser->getEmail(), $this->settings['newsletterTitle'], $emailContent);
         }
@@ -116,13 +117,13 @@ class FrontendUserController extends ActionController
      * @param string $ruid
      * @param string $verify
      */
-    public function activateAction($ruid = '', $verify = '')
+    public function activateAction(string $ruid = '', string $verify = '')
     {
         $frontendUserUid = (int)base64_decode($ruid);
         if (!$frontendUserUid) {
             return new ForwardResponse('invalidLink');
         } else {
-            if ($verify === GeneralUtility::stdAuthCode($frontendUserUid)) {
+            if ($verify === GeneralUtility::hmac($frontendUserUid)) {
                 $frontendUser = $this->frontendUserRepository->findOneByUidAndStoragePageId($frontendUserUid,
                     (int)$this->settings['userFolder']);
                 if ($frontendUser instanceof FrontendUser) {
@@ -130,7 +131,7 @@ class FrontendUserController extends ActionController
                     $this->frontendUserRepository->update($frontendUser);
                     $this->persistenceManager->persistAll();
                     $successMessage = LocalizationUtility::translate('activateFrontendUser.success',
-                        $this->controllerContext->getRequest()->getControllerExtensionName(),
+                        $this->request->getControllerExtensionName(),
                         [1 => $this->settings['newsletterTitle']]);
                     $this->addFlashMessage($successMessage);
                     $this->redirect('edit', null, null, $this->request->getArguments());
@@ -155,13 +156,13 @@ class FrontendUserController extends ActionController
      * @param string $ruid
      * @param string $verify
      */
-    public function editAction($ruid = '', $verify = ''): ResponseInterface
+    public function editAction(string $ruid = '', string $verify = ''): ResponseInterface
     {
         $frontendUserUid = (int)base64_decode($ruid);
         if (!$frontendUserUid) {
             return new ForwardResponse('invalidLink');
         } else {
-            if ($verify === GeneralUtility::stdAuthCode($frontendUserUid)) {
+            if ($verify === GeneralUtility::hmac($frontendUserUid)) {
                 $frontendUser = $this->frontendUserRepository->findOneByUidAndStoragePageId($frontendUserUid,
                     (int)$this->settings['userFolder']);
                 if ($frontendUser instanceof FrontendUser) {
@@ -187,13 +188,13 @@ class FrontendUserController extends ActionController
      * @param FrontendUser $frontendUser
      * @param string $verify
      */
-    public function updateAction(FrontendUser $frontendUser, $verify = ''): ResponseInterface
+    public function updateAction(FrontendUser $frontendUser, string $verify = ''): ResponseInterface
     {
-        if ($verify === GeneralUtility::stdAuthCode($frontendUser->getUid())) {
+        if ($verify === GeneralUtility::hmac($frontendUser->getUid())) {
             $this->frontendUserRepository->update($frontendUser);
             $this->persistenceManager->persistAll();
             $successMessage = LocalizationUtility::translate('updateFrontendUser.success',
-                $this->controllerContext->getRequest()->getControllerExtensionName());
+                $this->request->getControllerExtensionName());
             $this->addFlashMessage($successMessage);
             $this->redirect('edit', null, null,
                 ['verify' => $verify, 'ruid' => base64_encode($frontendUser->getUid())]);
@@ -214,23 +215,23 @@ class FrontendUserController extends ActionController
      * @param string $ruid
      * @param string $verify
      */
-    public function deleteAction($ruid = '', $verify = ''): ResponseInterface
+    public function deleteAction(string $ruid = '', string $verify = ''): ResponseInterface
     {
         $frontendUserUid = (int)base64_decode($ruid);
         if (!$frontendUserUid) {
             return new ForwardResponse('deleteError');
-        } else {
-            if ($verify === GeneralUtility::stdAuthCode($frontendUserUid)) {
-                $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid);
-                if ($frontendUser instanceof FrontendUser) {
-                    $this->frontendUserRepository->remove($frontendUser);
-                    $this->persistenceManager->persistAll();
-                } else {
-                    return new ForwardResponse('deleteError');
-                }
+        }
+
+        if ($verify === GeneralUtility::hmac($frontendUserUid)) {
+            $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid);
+            if ($frontendUser instanceof FrontendUser) {
+                $this->frontendUserRepository->remove($frontendUser);
+                $this->persistenceManager->persistAll();
             } else {
                 return new ForwardResponse('deleteError');
             }
+        } else {
+            return new ForwardResponse('deleteError');
         }
         return $this->htmlResponse();
     }
@@ -248,17 +249,15 @@ class FrontendUserController extends ActionController
      * @param string $action
      * @return string
      */
-    protected function createOptInUri($uid, $action = 'activate')
+    protected function createOptInUri(int $uid, string $action = 'activate'): string
     {
         $arguments = [
-            [
-                'tx_newsletterregistration_newsletterregistration' => [
-                    'controller' => 'FrontendUser',
-                    'action' => $action,
-                    'ruid' => base64_encode($uid),
-                    'verify' => GeneralUtility::stdAuthCode($uid),
-                ]
-            ]
+            'tx_newsletterregistration_newsletterregistration' => [
+                'controller' => 'FrontendUser',
+                'action' => $action,
+                'ruid' => base64_encode($uid),
+                'verify' => GeneralUtility::hmac($uid),
+            ],
         ];
 
         return $this->uriBuilder->reset()->setCreateAbsoluteUri(true)->setArguments($arguments)->build();
@@ -266,13 +265,13 @@ class FrontendUserController extends ActionController
 
     /**
      * @param string $email
-     * @param $subject
-     * @param $content
+     * @param string $subject
+     * @param string $content
      * @param string $replyTo
      * @param string $returnPath
      * @return bool
      */
-    protected function sendEmail($email, $subject, $content, $replyTo = '', $returnPath = '')
+    protected function sendEmail(string $email, string $subject, string $content, string $replyTo = '', string $returnPath = ''): bool
     {
         /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
         $message = GeneralUtility::makeInstance('TYPO3\CMS\Core\Mail\MailMessage');
