@@ -12,7 +12,7 @@ ExtensionUtility::registerPlugin(
     'EXT:newsletterregistration/ext_icon.gif'
 );
 
-$pluginSignature = 'newsletterregistration';
+$pluginSignature = 'newsletterregistration_newsletterregistration';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
 ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
