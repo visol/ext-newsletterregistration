@@ -3,9 +3,10 @@
 namespace Visol\Newsletterregistration\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
+use TYPO3\CMS\Core\Crypto\Random;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use Visol\Newsletterregistration\Utility\Algorithms;
 use Visol\Newsletterregistration\Domain\Repository\FrontendUserRepository;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -88,7 +89,7 @@ class FrontendUserController extends ActionController
             }
         } else {
             $newFrontendUser->setUsername($newFrontendUser->getEmail());
-            $newFrontendUser->setPassword(Algorithms::generateRandomString(32));
+            $newFrontendUser->setPassword($this->getHashedPassword($this->getRandomPassword()));
             $newFrontendUser->setActivateNewsletter(true);
             $newFrontendUser->setReceiveHtmlMail(true);
             $newFrontendUser->setDisable(true);
@@ -314,6 +315,19 @@ class FrontendUserController extends ActionController
     public function injectPersistenceManager(PersistenceManager $persistenceManager): void
     {
         $this->persistenceManager = $persistenceManager;
+    }
+
+    protected function getRandomPassword(): string
+    {
+        $randomPassword = GeneralUtility::makeInstance(Random::class)->generateRandomBytes(32);
+        $hashInstance = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
+        return $hashInstance->getHashedPassword($randomPassword);
+    }
+
+    protected function getHashedPassword(string $password): string
+    {
+        $hashInstance = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
+        return $hashInstance->getHashedPassword($password);
     }
 
 }
