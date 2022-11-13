@@ -34,15 +34,15 @@
 										<numIndex index="1">gender</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:lang/locallang_general.xlf:LGL.first_name</numIndex>
+										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.first_name</numIndex>
 										<numIndex index="1">firstName</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:lang/locallang_general.xlf:LGL.last_name</numIndex>
+										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.last_name</numIndex>
 										<numIndex index="1">lastName</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:lang/locallang_general.xlf:LGL.company</numIndex>
+										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.company</numIndex>
 										<numIndex index="1">company</numIndex>
 									</numIndex>
 								</items>

@@ -15,6 +15,15 @@
 			<trans-unit id="fe_users.gender.f">
 				<source>Female</source>
 			</trans-unit>
+			<trans-unit id="fe_users.first_name">
+				<source>First name:</source>
+			</trans-unit>
+			<trans-unit id="fe_users.last_name">
+				<source>Last name:</source>
+			</trans-unit>
+			<trans-unit id="fe_users.company">
+				<source>Company:</source>
+			</trans-unit>
 			<trans-unit id="fe_users.user_language">
 				<source>User language:</source>
 			</trans-unit>
