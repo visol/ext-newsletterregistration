@@ -2,6 +2,9 @@
 
 namespace Visol\Newsletterregistration\Domain\Repository;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Persistence\Repository;
 use Visol\Newsletterregistration\Domain\Model\FrontendUser;
 /**
  * This file is part of the TYPO3 CMS project.
@@ -15,13 +18,16 @@ use Visol\Newsletterregistration\Domain\Model\FrontendUser;
  *
  * The TYPO3 project - inspiring people to share!
  */
-/**
- * A Frontend User repository
- *
- * @api
- */
-class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+class FrontendUserRepository extends Repository
 {
+
+    public function initializeObject()
+    {
+        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
+        $querySettings->setRespectStoragePage(false);
+        $querySettings->setIgnoreEnableFields(true);
+        $this->setDefaultQuerySettings($querySettings);
+    }
 
     /**
      * @param string $email
@@ -31,23 +37,9 @@ class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\Fronte
     public function findOneByEmailAndStoragePageId($email, $targetFolder)
     {
         $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->getQuerySettings()->setRespectStoragePage(true);
         $query->getQuerySettings()->setStoragePageIds([$targetFolder]);
         $query->matching($query->equals('email', $email));
-        return $query->execute()->getFirst();
-    }
-
-    /**
-     * @param string $uid
-     * @param integer $targetFolder
-     * @return FrontendUser|NULL
-     */
-    public function findOneByUidAndStoragePageId($uid, $targetFolder)
-    {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
-        $query->getQuerySettings()->setStoragePageIds([$targetFolder]);
-        $query->matching($query->equals('uid', $uid));
         return $query->execute()->getFirst();
     }
 

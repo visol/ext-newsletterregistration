@@ -126,8 +126,7 @@ class FrontendUserController extends ActionController
             return new ForwardResponse('invalidLink');
         } else {
             if ($verify === GeneralUtility::hmac($frontendUserUid)) {
-                $frontendUser = $this->frontendUserRepository->findOneByUidAndStoragePageId($frontendUserUid,
-                    (int)$this->settings['userFolder']);
+                $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid);
                 if ($frontendUser instanceof FrontendUser) {
                     $frontendUser->setDisable(false);
                     $this->frontendUserRepository->update($frontendUser);
@@ -165,8 +164,7 @@ class FrontendUserController extends ActionController
             return new ForwardResponse('invalidLink');
         } else {
             if ($verify === GeneralUtility::hmac($frontendUserUid)) {
-                $frontendUser = $this->frontendUserRepository->findOneByUidAndStoragePageId($frontendUserUid,
-                    (int)$this->settings['userFolder']);
+                $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid);
                 if ($frontendUser instanceof FrontendUser) {
                     $this->view->assign('frontendUser', $frontendUser);
                     $this->view->assign('unsubscribeUri', $this->createOptInUri($frontendUserUid, 'delete'));
