@@ -25,7 +25,6 @@ class FrontendUserRepository extends Repository
     {
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false);
-        $querySettings->setIgnoreEnableFields(true);
         $this->setDefaultQuerySettings($querySettings);
     }
 
@@ -37,10 +36,34 @@ class FrontendUserRepository extends Repository
     public function findOneByEmailAndStoragePageId($email, $targetFolder)
     {
         $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
         $query->getQuerySettings()->setRespectStoragePage(true);
         $query->getQuerySettings()->setStoragePageIds([$targetFolder]);
         $query->matching($query->equals('email', $email));
         return $query->execute()->getFirst();
+    }
+
+    /**
+     * Override default findByUid function to enable also the option to turn of
+     * the enableField setting
+     *
+     * @param int $uid id of record
+     * @param bool $respectEnableFields if set to false, hidden records are shown
+     */
+    public function findByUid($uid, bool $respectEnableFields = true): ?FrontendUser
+    {
+        $query = $this->createQuery();
+
+        if (!$respectEnableFields) {
+            $query->getQuerySettings()->setIgnoreEnableFields(true);
+        }
+
+        return $query->matching(
+            $query->logicalAnd(
+                $query->equals('uid', $uid),
+                $query->equals('deleted', 0)
+            )
+        )->execute()->getFirst();
     }
 
 }

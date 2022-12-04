@@ -126,7 +126,7 @@ class FrontendUserController extends ActionController
             return new ForwardResponse('invalidLink');
         } else {
             if ($verify === GeneralUtility::hmac($frontendUserUid)) {
-                $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid);
+                $frontendUser = $this->frontendUserRepository->findByUid($frontendUserUid, false);
                 if ($frontendUser instanceof FrontendUser) {
                     $frontendUser->setDisable(false);
                     $this->frontendUserRepository->update($frontendUser);
