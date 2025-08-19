@@ -3,8 +3,9 @@
 namespace Visol\Newsletterregistration\Domain\Model;
 
 use TYPO3\CMS\Extbase\Annotation as Extbase;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,12 +20,9 @@ use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
  */
 /**
  * A Frontend User
- *
- * @api
  */
 class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 {
-
     /**
      * @var ObjectStorage<FrontendUserGroup>
      */
@@ -36,17 +34,17 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     protected $gender;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $activateNewsletter;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $receiveHtmlMail;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $disable;
 
@@ -60,7 +58,6 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     /**
      * Constructs a new Front-End User
      *
-     * @api
      * @param string $username
      * @param string $password
      */
@@ -86,7 +83,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActivateNewsletter()
     {
@@ -94,7 +91,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * @param boolean $activateNewsletter
+     * @param bool $activateNewsletter
      */
     public function setActivateNewsletter($activateNewsletter): void
     {
@@ -102,7 +99,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isReceiveHtmlMail()
     {
@@ -110,7 +107,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * @param boolean $receiveHtmlMail
+     * @param bool $receiveHtmlMail
      */
     public function setReceiveHtmlMail($receiveHtmlMail): void
     {
@@ -118,7 +115,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isDisable()
     {
@@ -126,11 +123,10 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     }
 
     /**
-     * @param boolean $disable
+     * @param bool $disable
      */
     public function setDisable($disable): void
     {
         $this->disable = $disable;
     }
-
 }

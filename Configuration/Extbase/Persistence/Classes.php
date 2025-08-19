@@ -9,11 +9,11 @@ return [
         'tableName' => 'fe_users',
         'properties' => [
             'activateNewsletter' => [
-                'fieldName' => 'module_sys_dmail_newsletter'
+                'fieldName' => 'module_sys_dmail_newsletter',
             ],
             'receiveHtmlMail' => [
-                'fieldName' => 'module_sys_dmail_html'
+                'fieldName' => 'module_sys_dmail_html',
             ],
-        ]
+        ],
     ],
 ];
