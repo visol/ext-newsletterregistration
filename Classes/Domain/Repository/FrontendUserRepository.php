@@ -21,7 +21,7 @@ use Visol\Newsletterregistration\Domain\Model\FrontendUser;
 class FrontendUserRepository extends Repository
 {
 
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false);

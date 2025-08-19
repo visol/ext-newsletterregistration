@@ -2,7 +2,7 @@
 use TYPO3\CMS\Extbase\Utility\ExtensionUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
-defined('TYPO3') or die();
+defined('TYPO3') || die();
 
 /* Registration plugin with FlexForm */
 ExtensionUtility::registerPlugin(
@@ -13,8 +13,9 @@ ExtensionUtility::registerPlugin(
 );
 
 $pluginSignature = 'newsletterregistration_newsletterregistration';
-$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('tt_content', '--div--;Configuration,pi_flexform,', $pluginSignature, 'after:subheader');
 ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignature,
-    'FILE:EXT:newsletterregistration/Configuration/FlexForm/flexform_newsletterregistration.xml'
+    '*',
+    'FILE:EXT:newsletterregistration/Configuration/FlexForm/flexform_newsletterregistration.xml',
+    $pluginSignature
 );

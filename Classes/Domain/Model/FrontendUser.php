@@ -28,7 +28,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     /**
      * @var ObjectStorage<FrontendUserGroup>
      */
-    protected $usergroup = null;
+    protected $usergroup;
 
     /**
      * @var string
@@ -52,9 +52,9 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 
     /**
      * @var string
-     * @Extbase\Validate("EmailAddress")
-     * @Extbase\Validate("NotEmpty")
      */
+    #[Extbase\Validate(['validator' => 'EmailAddress'])]
+    #[Extbase\Validate(['validator' => 'NotEmpty'])]
     protected $email;
 
     /**
@@ -80,7 +80,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     /**
      * @param string $gender
      */
-    public function setGender($gender)
+    public function setGender($gender): void
     {
         $this->gender = $gender;
     }
@@ -96,7 +96,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     /**
      * @param boolean $activateNewsletter
      */
-    public function setActivateNewsletter($activateNewsletter)
+    public function setActivateNewsletter($activateNewsletter): void
     {
         $this->activateNewsletter = $activateNewsletter;
     }
@@ -112,7 +112,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     /**
      * @param boolean $receiveHtmlMail
      */
-    public function setReceiveHtmlMail($receiveHtmlMail)
+    public function setReceiveHtmlMail($receiveHtmlMail): void
     {
         $this->receiveHtmlMail = $receiveHtmlMail;
     }
@@ -128,7 +128,7 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
     /**
      * @param boolean $disable
      */
-    public function setDisable($disable)
+    public function setDisable($disable): void
     {
         $this->disable = $disable;
     }

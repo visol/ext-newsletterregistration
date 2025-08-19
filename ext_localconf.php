@@ -14,5 +14,5 @@ ExtensionUtility::configurePlugin('newsletterregistration', 'newsletterregistrat
     ], // non-cacheable actions
     [
         FrontendUserController::class => 'new,create,edit,update,activate,delete'
-    ]
+    ], \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );

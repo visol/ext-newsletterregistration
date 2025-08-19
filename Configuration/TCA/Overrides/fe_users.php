@@ -1,6 +1,6 @@
 <?php
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-defined('TYPO3') or die();
+defined('TYPO3') || die();
 
 $temporaryColumns = [
     'gender' => [
@@ -9,14 +9,14 @@ $temporaryColumns = [
             'type' => 'radio',
             'default' => 'm',
             'items' => [
-                ['LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender.m', 'm'],
-                ['LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender.f', 'f']
+                ['label' => 'LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender.m', 'value' => 'm'],
+                ['label' => 'LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender.f', 'value' => 'f']
             ]
         ]
     ],
 ];
 
-ExtensionManagementUtility::addTCAcolumns('fe_users', $temporaryColumns, true);
+ExtensionManagementUtility::addTCAcolumns('fe_users', $temporaryColumns);
 
 ExtensionManagementUtility::addToAllTCAtypes('fe_users', 'gender', '', 'after:company');
 
