@@ -4,6 +4,7 @@ namespace Visol\Newsletterregistration\Domain\Model;
 
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -21,111 +22,93 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /**
  * A Frontend User
  */
-class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+class FrontendUser extends AbstractEntity
 {
+    protected string $username = '';
+
+    protected string $password = '';
+
     /**
      * @var ObjectStorage<FrontendUserGroup>
      */
     protected $usergroup;
 
-    /**
-     * @var string
-     */
-    protected $gender;
+    protected string $gender;
 
-    /**
-     * @var bool
-     */
-    protected $activateNewsletter;
+    protected bool $activateNewsletter;
 
-    /**
-     * @var bool
-     */
-    protected $receiveHtmlMail;
+    protected bool $receiveHtmlMail;
 
-    /**
-     * @var bool
-     */
-    protected $disable;
+    protected bool $disable;
 
-    /**
-     * @var string
-     */
     #[Extbase\Validate(['validator' => 'EmailAddress'])]
     #[Extbase\Validate(['validator' => 'NotEmpty'])]
-    protected $email;
+    protected string $email;
 
-    /**
-     * Constructs a new Front-End User
-     *
-     * @param string $username
-     * @param string $password
-     */
-    public function __construct($username = '', $password = '')
+    public function __construct(
+        string $username = '',
+        string $password = '')
     {
-        parent::__construct($username, $password);
+        $this->username = $username;
+        $this->password = $password;
     }
 
-    /**
-     * @return string
-     */
-    public function getGender()
+    public function setUsername(string $username)
+    {
+        $this->username = $username;
+     }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+     }
+
+    public function setPassword(string $password)
+    {
+        $this->password = $password;
+     }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+     }
+
+    public function getGender(): string
     {
         return $this->gender;
     }
 
-    /**
-     * @param string $gender
-     */
-    public function setGender($gender): void
+    public function setGender(string $gender): void
     {
         $this->gender = $gender;
     }
 
-    /**
-     * @return bool
-     */
-    public function isActivateNewsletter()
+    public function isActivateNewsletter(): bool
     {
         return $this->activateNewsletter;
     }
 
-    /**
-     * @param bool $activateNewsletter
-     */
-    public function setActivateNewsletter($activateNewsletter): void
+    public function setActivateNewsletter(bool $activateNewsletter): void
     {
         $this->activateNewsletter = $activateNewsletter;
     }
 
-    /**
-     * @return bool
-     */
-    public function isReceiveHtmlMail()
+    public function isReceiveHtmlMail(): bool
     {
         return $this->receiveHtmlMail;
     }
 
-    /**
-     * @param bool $receiveHtmlMail
-     */
-    public function setReceiveHtmlMail($receiveHtmlMail): void
+    public function setReceiveHtmlMail(bool $receiveHtmlMail): void
     {
         $this->receiveHtmlMail = $receiveHtmlMail;
     }
 
-    /**
-     * @return bool
-     */
-    public function isDisable()
+    public function isDisable(): bool
     {
         return $this->disable;
     }
 
-    /**
-     * @param bool $disable
-     */
-    public function setDisable($disable): void
+    public function setDisable(bool $disable): void
     {
         $this->disable = $disable;
     }
