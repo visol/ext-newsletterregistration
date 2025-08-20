@@ -29,17 +29,11 @@ use Visol\Newsletterregistration\Domain\Repository\FrontendUserRepository;
  */
 class FrontendUserController extends ActionController
 {
-    /**
-     * @var FrontendUserRepository
-     */
-    protected $frontendUserRepository;
-
-    /**
-     * persistenceManager
-     *
-     * @var PersistenceManager
-     */
-    protected $persistenceManager;
+    public function __construct(
+        protected FrontendUserRepository $frontendUserRepository,
+        protected PersistenceManager $persistenceManager,
+    ) {
+    }
 
     public function newAction(?FrontendUser $newFrontendUser = null): ResponseInterface
     {
@@ -290,16 +284,6 @@ class FrontendUserController extends ActionController
         $message->text($content);
         $message->send();
         return $message->isSent();
-    }
-
-    public function injectFrontendUserRepository(FrontendUserRepository $frontendUserRepository): void
-    {
-        $this->frontendUserRepository = $frontendUserRepository;
-    }
-
-    public function injectPersistenceManager(PersistenceManager $persistenceManager): void
-    {
-        $this->persistenceManager = $persistenceManager;
     }
 
     protected function getRandomPassword(): string

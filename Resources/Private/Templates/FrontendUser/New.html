@@ -3,13 +3,15 @@
 <f:section name="main">
 
 	<f:form action="create" name="newFrontendUser" object="newFrontendUser" class="form__newsletterregistration">
-		<p><f:translate key="newFrontendUser.introduction" arguments="{0: settings.newsletterTitle}" /></p>
+		<p>
+			<f:translate key="newFrontendUser.introduction" arguments="{0: settings.newsletterTitle}" />
+		</p>
 		<f:render partial="FormErrors" arguments="{object:Panel}" />
 		<div class="form-group">
 			<label for="email">
 				<f:translate key="labels.email" />
 			</label>
-			<f:form.textfield id="email" class="form-control" property="email" required="TRUE" />
+			<f:form.textfield id="email" class="form-control" type="email" property="email" required="required" />
 		</div>
 		<div class="form-group">
 			<f:form.submit value="{f:translate(key:'newFrontendUser.submit')}" />

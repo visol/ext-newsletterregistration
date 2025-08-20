@@ -47,8 +47,8 @@ class FrontendUser extends AbstractEntity
 
     public function __construct(
         string $username = '',
-        string $password = '')
-    {
+        string $password = ''
+    ) {
         $this->username = $username;
         $this->password = $password;
     }
@@ -56,22 +56,22 @@ class FrontendUser extends AbstractEntity
     public function setUsername(string $username)
     {
         $this->username = $username;
-     }
+    }
 
     public function getUsername(): string
     {
         return $this->username;
-     }
+    }
 
     public function setPassword(string $password)
     {
         $this->password = $password;
-     }
+    }
 
     public function getPassword(): string
     {
         return $this->password;
-     }
+    }
 
     public function getGender(): string
     {
