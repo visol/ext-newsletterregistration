@@ -49,7 +49,7 @@ class FrontendUserController extends ActionController
             (int) $this->settings['userFolder']
         );
         if ($existingFrontendUser instanceof FrontendUser) {
-            if ($existingFrontendUser->isDisable() === true) {
+            if ($existingFrontendUser->isDisable()) {
                 // user is disabled, so maybe the opt-in failed - we send an opt-in-email again
                 $url = $this->createOptInUri($existingFrontendUser->getUid());
                 $optInUri = '<a href="' . $url . '">' . $url . '</a>';
@@ -138,13 +138,10 @@ class FrontendUserController extends ActionController
                 );
                 $this->addFlashMessage($successMessage);
                 return $this->redirect('edit', null, null, $this->request->getArguments());
-            } else {
-                return new ForwardResponse('invalidLink');
             }
-        } else {
             return new ForwardResponse('invalidLink');
         }
-        return null;
+        return new ForwardResponse('invalidLink');
     }
 
     /**

@@ -49,7 +49,7 @@ class FrontendUser extends AbstractEntity
     ) {
     }
 
-    public function setUsername(string $username)
+    public function setUsername(string $username): void
     {
         $this->username = $username;
     }
@@ -59,7 +59,7 @@ class FrontendUser extends AbstractEntity
         return $this->username;
     }
 
-    public function setPassword(string $password)
+    public function setPassword(string $password): void
     {
         $this->password = $password;
     }
