@@ -41,7 +41,7 @@ class FrontendUserController extends ActionController
         return $this->htmlResponse();
     }
 
-    public function createAction(FrontendUser $newFrontendUser)
+    public function createAction(FrontendUser $newFrontendUser): ResponseInterface
     {
         /** @var FrontendUser $existingFrontendUser */
         $existingFrontendUser = $this->frontendUserRepository->findOneByEmailAndStoragePageId(
@@ -62,7 +62,8 @@ class FrontendUserController extends ActionController
             } elseif (!empty($this->settings['fieldList'])) {
                 // user exists and is active
                 // user is editable, we send an edit profile link
-                $optInUri = $this->createOptInUri($existingFrontendUser->getUid(), 'edit');
+                $url = $this->createOptInUri($existingFrontendUser->getUid(), 'edit');
+                $optInUri = '<a href="' . $url . '">' . $url . '</a>';
                 $emailContent = LocalizationUtility::translate(
                     'createFrontendUser.optInEmail.edit.unsubscribeOnly',
                     $this->request->getControllerExtensionName(),
@@ -75,7 +76,8 @@ class FrontendUserController extends ActionController
                 );
             } else {
                 // user is not editable, so we send an unsubscribe link
-                $optInUri = $this->createOptInUri($existingFrontendUser->getUid(), 'delete');
+                $url = $this->createOptInUri($existingFrontendUser->getUid(), 'delete');
+                $optInUri = '<a href="' . $url . '">' . $url . '</a>';
                 $emailContent = LocalizationUtility::translate(
                     'createFrontendUser.optInEmail.edit.unsubscribeOnly',
                     $this->request->getControllerExtensionName(),

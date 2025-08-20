@@ -24,10 +24,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class FrontendUser extends AbstractEntity
 {
-    protected string $username = '';
-
-    protected string $password = '';
-
     /**
      * @var ObjectStorage<FrontendUserGroup>
      */
@@ -46,11 +42,11 @@ class FrontendUser extends AbstractEntity
     protected string $email;
 
     public function __construct(
-        string $username = '',
-        string $password = ''
+        protected string $username = '',
+        protected string $password = '',
+        protected string $firstName = '',
+        protected string $lastName = '',
     ) {
-        $this->username = $username;
-        $this->password = $password;
     }
 
     public function setUsername(string $username)
@@ -111,5 +107,51 @@ class FrontendUser extends AbstractEntity
     public function setDisable(bool $disable): void
     {
         $this->disable = $disable;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return ObjectStorage<FrontendUserGroup>
+     */
+    public function getUsergroup(): ?ObjectStorage
+    {
+        return $this->usergroup;
+    }
+
+    /**
+     * @param ObjectStorage<FrontendUserGroup> $usergroup
+     */
+    public function setUsergroup(ObjectStorage $usergroup): void
+    {
+        $this->usergroup = $usergroup;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
     }
 }
