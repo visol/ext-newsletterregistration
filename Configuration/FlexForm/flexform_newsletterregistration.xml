@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <T3DataStructure>
     <meta>
         <langDisable>1</langDisable>
@@ -5,67 +6,59 @@
     <sheets>
         <sDEF>
             <ROOT>
-                <TCEforms>
-                    <sheetTitle>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.sheetTitle</sheetTitle>
-                </TCEforms>
+                <sheetTitle>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.sheetTitle</sheetTitle>
                 <type>array</type>
                 <el>
-					<settings.newsletterTitle>
-						<TCEforms>
-							<exclude>0</exclude>
-							<label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.newsletterTitle</label>
-							<config>
-								<type>input</type>
-								<eval>trim,required</eval>
-								<size>30</size>
-							</config>
-						</TCEforms>
-					</settings.newsletterTitle>
-					<settings.fieldList>
-						<TCEforms>
-							<exclude>0</exclude>
-							<label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList</label>
-							<config>
-								<type>select</type>
-								<renderType>selectMultipleSideBySide</renderType>
-								<items type="array">
-									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender</numIndex>
-										<numIndex index="1">gender</numIndex>
-									</numIndex>
-									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.first_name</numIndex>
-										<numIndex index="1">firstName</numIndex>
-									</numIndex>
-									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.last_name</numIndex>
-										<numIndex index="1">lastName</numIndex>
-									</numIndex>
-									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.company</numIndex>
-										<numIndex index="1">company</numIndex>
-									</numIndex>
-								</items>
-								<minitems>0</minitems>
-								<maxitems>99</maxitems>
-								<size>8</size>
-							</config>
-						</TCEforms>
-					</settings.fieldList>
-					<settings.userFolder>
-						<TCEforms>
-							<exclude>0</exclude>
-							<label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.userFolder</label>
-							<config>
-								<type>group</type>
-								<internal_type>db</internal_type>
-								<allowed>pages</allowed>
-								<size>1</size>
-								<maxitems>1</maxitems>
-								<minitems>1</minitems>
-							</config>
-						</TCEforms>
-					</settings.userFolder>
+                    <settings.newsletterTitle>
+                        <exclude>0</exclude>
+                        <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.newsletterTitle</label>
+                        <config>
+                            <type>input</type>
+                            <eval>trim,required</eval>
+                            <size>30</size>
+                        </config>
+                    </settings.newsletterTitle>
+                    <settings.fieldList>
+                        <exclude>0</exclude>
+                        <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectMultipleSideBySide</renderType>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender</numIndex>
+                                    <numIndex index="1">gender</numIndex>
+                                </numIndex>
+                                <numIndex index="1" type="array">
+                                    <numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.first_name</numIndex>
+                                    <numIndex index="1">firstName</numIndex>
+                                </numIndex>
+                                <numIndex index="2" type="array">
+                                    <numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.last_name</numIndex>
+                                    <numIndex index="1">lastName</numIndex>
+                                </numIndex>
+                                <numIndex index="3" type="array">
+                                    <numIndex index="0">LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.company</numIndex>
+                                    <numIndex index="1">company</numIndex>
+                                </numIndex>
+                            </items>
+                            <minitems>0</minitems>
+                            <maxitems>99</maxitems>
+                            <size>8</size>
+                        </config>
+                    </settings.fieldList>
+                    <settings.userFolder>
+                        <exclude>0</exclude>
+                        <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.userFolder</label>
+                        <config>
+                            <type>group</type>
+                            <internal_type>db</internal_type>
+                            <allowed>pages</allowed>
+                            <size>1</size>
+                            <maxitems>1</maxitems>
+                            <minitems>1</minitems>
+                        </config>
+                    </settings.userFolder>
                 </el>
             </ROOT>
         </sDEF>
