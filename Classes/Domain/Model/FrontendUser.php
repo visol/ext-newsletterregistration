@@ -3,8 +3,10 @@
 namespace Visol\Newsletterregistration\Domain\Model;
 
 use TYPO3\CMS\Extbase\Annotation as Extbase;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -19,118 +21,137 @@ use TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup;
  */
 /**
  * A Frontend User
- *
- * @api
  */
-class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+class FrontendUser extends AbstractEntity
 {
-
     /**
      * @var ObjectStorage<FrontendUserGroup>
      */
-    protected $usergroup = null;
+    protected $usergroup;
 
-    /**
-     * @var string
-     */
-    protected $gender;
+    protected string $gender;
 
-    /**
-     * @var boolean
-     */
-    protected $activateNewsletter;
+    protected bool $activateNewsletter;
 
-    /**
-     * @var boolean
-     */
-    protected $receiveHtmlMail;
+    protected bool $receiveHtmlMail;
 
-    /**
-     * @var boolean
-     */
-    protected $disable;
+    protected bool $disable;
 
-    /**
-     * @var string
-     * @Extbase\Validate("EmailAddress")
-     * @Extbase\Validate("NotEmpty")
-     */
-    protected $email;
+    #[Extbase\Validate(['validator' => 'EmailAddress'])]
+    #[Extbase\Validate(['validator' => 'NotEmpty'])]
+    protected string $email;
 
-    /**
-     * Constructs a new Front-End User
-     *
-     * @api
-     * @param string $username
-     * @param string $password
-     */
-    public function __construct($username = '', $password = '')
-    {
-        parent::__construct($username, $password);
+    public function __construct(
+        protected string $username = '',
+        protected string $password = '',
+        protected string $firstName = '',
+        protected string $lastName = '',
+    ) {
     }
 
-    /**
-     * @return string
-     */
-    public function getGender()
+    public function setUsername(string $username): void
+    {
+        $this->username = $username;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function getGender(): string
     {
         return $this->gender;
     }
 
-    /**
-     * @param string $gender
-     */
-    public function setGender($gender)
+    public function setGender(string $gender): void
     {
         $this->gender = $gender;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isActivateNewsletter()
+    public function isActivateNewsletter(): bool
     {
         return $this->activateNewsletter;
     }
 
-    /**
-     * @param boolean $activateNewsletter
-     */
-    public function setActivateNewsletter($activateNewsletter)
+    public function setActivateNewsletter(bool $activateNewsletter): void
     {
         $this->activateNewsletter = $activateNewsletter;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isReceiveHtmlMail()
+    public function isReceiveHtmlMail(): bool
     {
         return $this->receiveHtmlMail;
     }
 
-    /**
-     * @param boolean $receiveHtmlMail
-     */
-    public function setReceiveHtmlMail($receiveHtmlMail)
+    public function setReceiveHtmlMail(bool $receiveHtmlMail): void
     {
         $this->receiveHtmlMail = $receiveHtmlMail;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isDisable()
+    public function isDisable(): bool
     {
         return $this->disable;
     }
 
-    /**
-     * @param boolean $disable
-     */
-    public function setDisable($disable)
+    public function setDisable(bool $disable): void
     {
         $this->disable = $disable;
     }
 
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return ObjectStorage<FrontendUserGroup>
+     */
+    public function getUsergroup(): ?ObjectStorage
+    {
+        return $this->usergroup;
+    }
+
+    /**
+     * @param ObjectStorage<FrontendUserGroup> $usergroup
+     */
+    public function setUsergroup(ObjectStorage $usergroup): void
+    {
+        $this->usergroup = $usergroup;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
 }

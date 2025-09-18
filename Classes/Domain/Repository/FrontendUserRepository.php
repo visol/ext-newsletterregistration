@@ -6,6 +6,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use Visol\Newsletterregistration\Domain\Model\FrontendUser;
+
 /**
  * This file is part of the TYPO3 CMS project.
  *
@@ -20,8 +21,7 @@ use Visol\Newsletterregistration\Domain\Model\FrontendUser;
  */
 class FrontendUserRepository extends Repository
 {
-
-    public function initializeObject()
+    public function initializeObject(): void
     {
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class);
         $querySettings->setRespectStoragePage(false);
@@ -30,8 +30,8 @@ class FrontendUserRepository extends Repository
 
     /**
      * @param string $email
-     * @param integer $targetFolder
-     * @return FrontendUser|NULL
+     * @param int $targetFolder
+     * @return FrontendUser|null
      */
     public function findOneByEmailAndStoragePageId($email, $targetFolder)
     {
@@ -65,5 +65,4 @@ class FrontendUserRepository extends Repository
             )
         )->execute()->getFirst();
     }
-
 }

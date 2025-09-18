@@ -1,24 +1,24 @@
 plugin.tx_newsletterregistration {
-	view {
-		templateRootPath = {$plugin.tx_newsletterregistration.view.templateRootPath}
-		partialRootPath = {$plugin.tx_newsletterregistration.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_newsletterregistration.view.layoutRootPath}
-	}
-	persistence {
-		storagePid = {$plugin.tx_newsletterregistration.persistence.storagePid}
-	}
-	mvc {
-		callDefaultActionIfActionCantBeResolved = 1
-	}
-	features {
-		skipDefaultArguments = 1
-	}
-	settings {
-		sender {
-			name = My organization
-			email = no_reply@example.org
-			linkUrl = http://www.example.org
-			linkText = www.example.org
-		}
-	}
+  view {
+    templateRootPath = {$plugin.tx_newsletterregistration.view.templateRootPath}
+    partialRootPath = {$plugin.tx_newsletterregistration.view.partialRootPath}
+    layoutRootPath = {$plugin.tx_newsletterregistration.view.layoutRootPath}
+  }
+  persistence {
+    storagePid = {$plugin.tx_newsletterregistration.persistence.storagePid}
+  }
+  mvc {
+    callDefaultActionIfActionCantBeResolved = 1
+  }
+  features {
+    skipDefaultArguments = 1
+  }
+  settings {
+    sender {
+      name = My organization
+      email = no_reply@example.org
+      linkUrl = http://www.example.org
+      linkText = www.example.org
+    }
+  }
 }
