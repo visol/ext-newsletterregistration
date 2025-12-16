@@ -18,3 +18,8 @@ defined('TYPO3') || die();
         ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
     );
 })();
+
+// Register custom icons for the extension (TYPO3 v13 Best Practice)
+if (class_exists(\Visol\Newsletterregistration\Icon::class)) {
+    \Visol\Newsletterregistration\Icon::registerIcons();
+}

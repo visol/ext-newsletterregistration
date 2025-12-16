@@ -11,7 +11,7 @@ defined('TYPO3') || die();
         'newsletterregistration',
         'newsletterregistration',
         'LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:pluginLabel',
-        'EXT:newsletterregistration/Resources/Public/Icons/Extension.svg'
+        'newsletterregistration-plugin-newsletter'
     );
 
     $pluginSignature = 'newsletterregistration_newsletterregistration';
