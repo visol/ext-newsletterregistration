@@ -21,21 +21,22 @@ final class VisolNewsletterregistrationCTypeMigration extends AbstractListTypeTo
     }
 
     /**
-     * This must return an array containing the "list_type" to "CType" mapping
+     * Migrate newsletterregistration plugin from list_type to CType.
      *
-     *  Example:
+     * In TYPO3 12 and earlier, the plugin was registered with list_type.
+     * In TYPO3 13, it's registered as a content element (CType).
      *
-     *  [
-     *      'pi_plugin1' => 'pi_plugin1',
-     *      'pi_plugin2' => 'new_content_element',
-     *  ]
+     * This migration:
+     * - Finds all tt_content records with CType='list' and list_type='newsletterregistration_newsletterregistration'
+     * - Converts them to CType='newsletterregistration_newsletterregistration'
+     * - Updates backend user group permissions accordingly
      *
      * @return array<string, string>
      */
     protected function getListTypeToCTypeMapping(): array
     {
         return [
-            // TODO: Add this mapping yourself!
+            'newsletterregistration_newsletterregistration' => 'newsletterregistration_newsletterregistration',
         ];
     }
 }
