@@ -1,3 +1,13 @@
+## 4.0.1 (2025-12-16)
+
+[BUGFIX] add missing CType mapping to migration wizard
+[BUGFIX] add missing plugin icon
+[CHORE] small text fixes
+
+## 4.0.0 (2025-09-18)
+
+[TASK] v13 compatibility
+
 ## 3.0.0 (2022-12-14)
 
 [BUGFIX] Ignore enable fields when activating or creating a user
