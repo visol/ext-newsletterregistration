@@ -1,0 +1,63 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true"
+>
+<strong>
+    <f:translate key="LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:pluginLabel" />
+</strong>
+
+<table style="margin-top: 10px;">
+    <f:if condition="{flexFormData.settings.newsletterTitle}">
+        <tr>
+            <td style="padding: 2px 10px 2px 0; vertical-align: top;">
+                <strong><f:translate key="LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.newsletterTitle" /></strong>
+            </td>
+            <td style="padding: 2px 0;">
+                {flexFormData.settings.newsletterTitle}
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{flexFormData.settings.userFolder}">
+        <tr>
+            <td style="padding: 2px 10px 2px 0; vertical-align: top;">
+                <strong><f:translate key="LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.userFolder" /></strong>
+            </td>
+            <td style="padding: 2px 0;">
+                <code>[{flexFormData.settings.userFolder}]</code>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{flexFormData.settings.fieldList}">
+        <tr>
+            <td style="padding: 2px 10px 2px 0; vertical-align: top;">
+                <strong><f:translate key="LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList" /></strong>
+            </td>
+            <td style="padding: 2px 0;">
+                <f:for each="{flexFormData.settings.fieldList}" as="field" iteration="iter">
+                    <f:translate key="LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:labels.{field}" />
+                </f:for>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{flexFormData.settings.newsletterFolder}">
+        <tr>
+            <td style="padding: 2px 10px 2px 0; vertical-align: top;">
+                <strong>Newsletter Folder</strong>
+            </td>
+            <td style="padding: 2px 0;">
+                <code>[{flexFormData.settings.newsletterFolder}]</code>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{flexFormData.settings.grouping}">
+        <tr>
+            <td style="padding: 2px 10px 2px 0; vertical-align: top;">
+                <strong>Grouping</strong>
+            </td>
+            <td style="padding: 2px 0;">
+                {flexFormData.settings.grouping}
+            </td>
+        </tr>
+    </f:if>
+</table>
+
+</html>
