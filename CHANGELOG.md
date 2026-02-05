@@ -1,3 +1,12 @@
+## 4.0.3 (2026-02-05)
+[BUGFIX] fix preview renderer lable
+[CHORE] update changelog
+
+## 4.0.2 (2026-02-05)
+[BUGFIX] fix newContentElement wizard
+[FEAT] add backend preview renderer
+[FIX] improve flexform labels and description
+
 ## 4.0.1 (2025-12-16)
 
 [BUGFIX] add missing CType mapping to migration wizard
