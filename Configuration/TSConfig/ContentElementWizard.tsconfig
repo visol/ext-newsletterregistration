@@ -1,0 +1,13 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+    header = Plugins
+    elements {
+        plugins_tx_newsletterregistration_newsletterregistration {
+            iconIdentifier = newsletterregistration-plugin-newsletter
+            title = LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:pluginLabel
+            description = LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:pluginDescription
+            tt_content_defValues {
+                CType = newsletterregistration_newsletterregistration
+            }
+        }
+    }
+}
