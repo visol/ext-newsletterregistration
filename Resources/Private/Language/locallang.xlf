@@ -6,14 +6,25 @@
 			<trans-unit id="pluginLabel">
 				<source>Newsletter Registration</source>
 			</trans-unit>
+			<trans-unit id="pluginDescription">
+				<source>Registration form with opt-in function to save mail addresses (as website users).</source>
+			</trans-unit>
 			<trans-unit id="flexform.sheetTitle">
 				<source>Configuration</source>
 			</trans-unit>
 			<trans-unit id="flexform.newsletterTitle">
 				<source>Title of newsletter</source>
 			</trans-unit>
-			<trans-unit id="flexform.fieldList">
-				<source>User fields to display after opt-in (optional)</source>
+			<trans-unit id="flexform.newsletterTitle.description">
+				<source>Used in opt-in form and email in subject and bodytext</source>
+			</trans-unit>
+			<trans-unit id="flexform.fieldList.label">
+				<source>User fields (optional)</source>
+				<target>Benutzer-Felder (optional)</target>
+			</trans-unit>
+			<trans-unit id="flexform.fieldList.description">
+				<source>Are displayed for completion after confirmation (opt-in)</source>
+				<target>Werden nach der Bestätigung (Opt-in) zum ausfüllen angezeigt</target>
 			</trans-unit>
 			<trans-unit id="flexform.userFolder">
 				<source>User storage folder</source>
@@ -86,8 +97,6 @@
 			<trans-unit id="deleteFrontendUser.error">
 				<source>Your subscription could not be cancelled. Please make sure you used a valid unsubscribe link. If the problem persists, please contact us for further assistance.</source>
 			</trans-unit>
-
-
 			<trans-unit id="labels.gender">
 				<source>Salutation</source>
 			</trans-unit>

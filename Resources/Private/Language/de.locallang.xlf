@@ -3,10 +3,13 @@
 	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-19T13:43:14Z" product-name="newsletterregistration">
 		<header/>
 		<body>
-
 			<trans-unit id="pluginLabel">
 				<source>Newsletter Registration</source>
 				<target>Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="pluginDescription">
+				<source>Registration form with opt-in function to save mail addresses (as website users).</source>
+				<target>Anmeldeformular mit Opt-In Funktion zum Speichern von E-Mail Adressen (als Website Benutzer).</target>
 			</trans-unit>
 			<trans-unit id="flexform.sheetTitle">
 				<source>Configuration</source>
@@ -16,9 +19,17 @@
 				<source>Title of newsletter</source>
 				<target>Titel des Newsletters</target>
 			</trans-unit>
-			<trans-unit id="flexform.fieldList">
-				<source>User fields to display after opt-in (optional)</source>
-				<target>Optionale Benutzer-Felder, die nach dem Opt-in angezeigt werden</target>
+			<trans-unit id="flexform.newsletterTitle.description">
+				<source>Used in opt-in form and email in subject and bodytext</source>
+				<target>Wird im Opt-in Formular und Opt-in E-Mail im Betreff und Text verwendet</target>
+			</trans-unit>
+			<trans-unit id="flexform.fieldList.label">
+				<source>User fields (optional)</source>
+				<target>Benutzer-Felder (optional)</target>
+			</trans-unit>
+			<trans-unit id="flexform.fieldList.description">
+				<source>Are displayed for completion after confirmation (opt-in)</source>
+				<target>Werden nach der Bestätigung (Opt-in) zum ausfüllen angezeigt</target>
 			</trans-unit>
 			<trans-unit id="flexform.userFolder">
 				<source>User storage folder</source>
@@ -120,8 +131,6 @@
 				<source>Your subscription could not be cancelled. Please make sure you used a valid unsubscribe link. If the problem persists, please contact us for further assistance.</source>
 				<target>Ihr Abonnement konnte nicht beendet werden. Bitte stellen Sie sicher, dass Sie einen gültigen Abmelde-Link benutzen. Bitte kontaktieren Sie uns, falls das Problem weiterhin besteht.</target>
 			</trans-unit>
-
-
 			<trans-unit id="labels.gender">
 				<source>Salutation</source>
 				<target>Anrede</target>

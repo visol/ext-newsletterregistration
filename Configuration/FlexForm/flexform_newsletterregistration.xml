@@ -12,6 +12,7 @@
                     <settings.newsletterTitle>
                         <exclude>0</exclude>
                         <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.newsletterTitle</label>
+                        <description>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.newsletterTitle.description</description>
                         <config>
                             <type>input</type>
                             <eval>trim</eval>
@@ -21,25 +22,26 @@
                     </settings.newsletterTitle>
                     <settings.fieldList>
                         <exclude>0</exclude>
-                        <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList</label>
+                        <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList.label</label>
+                        <description>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:flexform.fieldList.description</description>
                         <config>
                             <type>select</type>
                             <renderType>selectMultipleSideBySide</renderType>
                             <items type="array">
                                 <numIndex index="0" type="array">
-                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.gender</label>
+                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:labels.gender</label>
                                     <value>gender</value>
                                 </numIndex>
                                 <numIndex index="1" type="array">
-                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.first_name</label>
+                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:labels.firstName</label>
                                     <value>firstName</value>
                                 </numIndex>
                                 <numIndex index="2" type="array">
-                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.last_name</label>
+                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:labels.lastName</label>
                                     <value>lastName</value>
                                 </numIndex>
                                 <numIndex index="3" type="array">
-                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang_db.xlf:fe_users.company</label>
+                                    <label>LLL:EXT:newsletterregistration/Resources/Private/Language/locallang.xlf:labels.company</label>
                                     <value>company</value>
                                 </numIndex>
                             </items>
