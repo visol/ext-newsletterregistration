@@ -118,6 +118,9 @@
 			<trans-unit id="labels.company">
 				<source>Organisation</source>
 			</trans-unit>
+			<trans-unit id="error.captcha">
+				<source>Captcha verification failed. Please try again.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

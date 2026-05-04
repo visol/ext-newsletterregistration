@@ -14,6 +14,10 @@ plugin.tx_newsletterregistration {
     skipDefaultArguments = 1
   }
   settings {
+    captcha {
+      sitekey =
+      secretkey =
+    }
     sender {
       name = My organization
       email = no_reply@example.org
