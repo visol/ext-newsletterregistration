@@ -13,6 +13,32 @@
 			</label>
 			<f:form.textfield id="email" class="form-control" property="email" required="required" />
 		</div>
+		<f:if condition="{settings.captcha.sitekey} !== '' && {settings.captcha.secretkey} !== ''">
+			<f:asset.script identifier="friendly-challenge-widget-module"
+				src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.8/widget.module.min.js"
+				type="module"
+				integrity="sha384-qT4bq9FARVVEQZ+u0J/IEGVVCM/d/aU6p2anikjcUPeSd9n5QP8xJ5wxyf3kvrUU"
+				crossorigin="anonymous"
+				async="true"
+				defer="true"
+				useNonce="true"
+			/>
+			<f:asset.script identifier="friendly-challenge-widget"
+				src="https://cdn.jsdelivr.net/npm/friendly-challenge@0.9.8/widget.min.js"
+				nomodule="true"
+				integrity="sha384-tBCxcMwFwX1Y+iL38Da2IZLdhA3HPO3ztLc4sD5ZYK4CgH4mTb0fRPwOw/4GEb12"
+				crossorigin="anonymous"
+				async="true"
+				defer="true"
+				useNonce="true"
+			/>
+			<div class="form-group">
+				<div class="frc-captcha"
+					data-puzzle-endpoint="https://eu-api.friendlycaptcha.eu/api/v1/puzzle"
+					data-sitekey="{settings.captcha.sitekey}">
+				</div>
+			</div>
+		</f:if>
 		<div class="form-group">
 			<f:form.submit value="{f:translate(key:'newFrontendUser.submit')}" />
 		</div>

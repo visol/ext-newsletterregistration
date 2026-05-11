@@ -7,6 +7,7 @@ use TYPO3\CMS\Core\Crypto\HashService;
 use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
 use TYPO3\CMS\Core\Crypto\Random;
 use TYPO3\CMS\Core\Mail\MailMessage;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -43,6 +44,16 @@ class FrontendUserController extends ActionController
 
     public function createAction(FrontendUser $newFrontendUser): ResponseInterface
     {
+        if ($this->settings['captcha']['sitekey'] !== '' && $this->settings['captcha']['secretkey'] !== '') {
+            if ($this->verifyCaptcha() === false) {
+                $this->addFlashMessage(
+                    LocalizationUtility::translate('error.captcha', 'newsletterregistration'),
+                    '',
+                    ContextualFeedbackSeverity::ERROR
+                );
+                return new ForwardResponse('new');
+            }
+        }
         /** @var FrontendUser $existingFrontendUser */
         $existingFrontendUser = $this->frontendUserRepository->findOneByEmailAndStoragePageId(
             $newFrontendUser->getEmail(),
@@ -290,6 +301,43 @@ class FrontendUserController extends ActionController
         $randomPassword = GeneralUtility::makeInstance(Random::class)->generateRandomBytes(32);
         $hashInstance = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
         return $hashInstance->getHashedPassword($randomPassword);
+    }
+
+    protected function verifyCaptcha(): bool
+    {
+        $sitekey = $this->settings['captcha']['sitekey'] ?? '';
+        $secretkey = $this->settings['captcha']['secretkey'] ?? '';
+
+        if (empty($secretkey)) {
+            return true;
+        }
+
+        $parsedBody = $this->request->getParsedBody();
+        $parsedBody = is_array($parsedBody) ? $parsedBody : [];
+        $solution = $parsedBody['frc-captcha-solution'] ?? '';
+        if (empty($solution) || $solution === '.UNSTARTED' || $solution === '.FETCHING') {
+            return false;
+        }
+
+        try {
+            $requestFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Http\RequestFactory::class);
+            $response = $requestFactory->request(
+                'https://eu-api.friendlycaptcha.eu/api/v1/siteverify',
+                'POST',
+                [
+                    'headers' => ['Content-Type' => 'application/json; charset=UTF-8'],
+                    'body' => json_encode([
+                        'solution' => $solution,
+                        'secret' => $secretkey,
+                        'sitekey' => $sitekey,
+                    ]),
+                ]
+            );
+            $data = json_decode((string)$response->getBody(), true);
+            return ($data['success'] ?? false) === true;
+        } catch (\Throwable $e) {
+            return false;
+        }
     }
 
     protected function getHashedPassword(string $password): string

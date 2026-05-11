@@ -159,6 +159,10 @@
 				<source>Organisation</source>
 				<target>Organisation</target>
 			</trans-unit>
+			<trans-unit id="error.captcha">
+				<source>Captcha verification failed. Please try again.</source>
+				<target>Captcha-Überprüfung fehlgeschlagen. Bitte versuchen Sie es erneut.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
