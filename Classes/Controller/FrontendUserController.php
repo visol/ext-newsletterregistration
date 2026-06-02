@@ -49,7 +49,8 @@ class FrontendUserController extends ActionController
                 $this->addFlashMessage(
                     LocalizationUtility::translate('error.captcha', 'newsletterregistration'),
                     '',
-                    ContextualFeedbackSeverity::ERROR
+                    ContextualFeedbackSeverity::ERROR,
+                    false,
                 );
                 return new ForwardResponse('new');
             }

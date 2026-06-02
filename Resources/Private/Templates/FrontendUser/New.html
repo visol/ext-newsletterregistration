@@ -2,6 +2,18 @@
 
 <f:section name="main">
 
+	<f:flashMessages as="flashMessages">
+		<f:if condition="{flashMessages}">
+			<div class="typo3-messages">
+				<f:for each="{flashMessages}" as="flashMessage">
+					<div class="typo3-message {flashMessage.class}">
+						{flashMessage.message}
+					</div>
+				</f:for>
+			</div>
+		</f:if>
+	</f:flashMessages>
+
 	<f:form action="create" name="newFrontendUser" object="{newFrontendUser}" class="form__newsletterregistration">
 		<p>
 			<f:translate key="newFrontendUser.introduction" arguments="{0: settings.newsletterTitle}" />
