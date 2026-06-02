@@ -31,3 +31,20 @@ This package is currently maintained for the following versions:
 ## Contribute
 
 Feel free to fork the extension and create pull requests for new features (that are respecting backwards compatibility).
+
+## Changelog
+
+### 4.0.4
+
+* Fix: Display FriendlyCaptcha verification error in the registration form (`New.html` was missing `<f:flashMessages>`, so the error was stored in the session but never shown to the user).
+* Fix: Prevent flash message session accumulation — captcha failure messages now use `storeInSession=false` since the form is re-displayed via `ForwardResponse` within the same request.
+
+### 4.0.3
+
+* Bump version number.
+* Add FriendlyCaptcha support (optional, configured via TypoScript `settings.captcha.sitekey` / `settings.captcha.secretkey`).
+
+### 4.0.2
+
+* Bump version number.
+* Backend preview renderer.
