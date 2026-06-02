@@ -28,9 +28,13 @@ This package is currently maintained for the following versions:
 | TYPO3 8.7.x         | 2.x             | -      | No         |
 | TYPO3 6.2.x - 7.9.x | 1.x             | -      | No         |
 
+## Contribute
+
+Feel free to fork the extension and create pull requests for new features (that are respecting backwards compatibility).
+
 ## Changelog
 
-### 4.2.0
+### 4.1.1
 
 * Fix: Display FriendlyCaptcha verification error in the registration form (`New.html` was missing `<f:flashMessages>`, so the error was stored in the session but never shown to the user).
 * Fix: Prevent flash message session accumulation — captcha failure messages now use `storeInSession=false` since the form is re-displayed via `ForwardResponse` within the same request.
@@ -38,7 +42,3 @@ This package is currently maintained for the following versions:
 ### 4.1.0
 
 * Add FriendlyCaptcha support (optional, configured via TypoScript `settings.captcha.sitekey` / `settings.captcha.secretkey`).
-
-## Contribute
-
-Feel free to fork the extension and create pull requests for new features (that are respecting backwards compatibility).
